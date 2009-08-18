@@ -17,11 +17,16 @@ class Rip (threading.Thread):
         """
 
         format, artist, album, year, genre, songs = self.gui.get_cd_info()
+
+        os.mkdir(('%s - %s' % (artist, album)))
+        os.chdir(('%s - %s' % (artist, album)))
+
         self.gui.rip_started(len(songs[1]))
         # - Does not work, nothing happens before controll is returned to the gtk.main()
 	# Need sepperate threads - TODO 
 	# "Ill fix this on 17.11 and not use the whole day to talk about stargate" -jascorpe
 	# :)
+        # a couple of years later, and it works!
 
         for i in range(len(songs[0])):
             # filename without three letter extension
@@ -34,6 +39,8 @@ class Rip (threading.Thread):
             self.gui.rip_update(songs[1][i]) #threads TODO
             if self.debug: print tmp
             os.system(tmp)
+
+        os.chdir('../')
 
         self.gui.popup("Ferdig :D", ["Jiipii"])
         self.gui.rip_finished()
