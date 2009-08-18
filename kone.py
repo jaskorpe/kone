@@ -73,9 +73,9 @@ class Kone:
 		for i in range(len(songs[0])):
 			tmp = "cdparanoia -q %s - |" % songs[0][i]
 			if ("Mp3" in format):
-				tmp = ('%s lame -V 2 --quiet --tt "%s" --ta "%s" --tl "%s" --ty "%s" --tn "%s" --tg "%s" - "%d-%s-%s.mp3"' % (tmp, songs[1][i], artist, album, year, songs[0][i], genre, i+1, songs[1][i], artist))
+				tmp = ('%s lame -V 2 --quiet --tt "%s" --ta "%s" --tl "%s" --ty "%s" --tn "%s" --tg "%s" - "%s-%s-%s.mp3"' % (tmp, songs[1][i], artist, album, year, songs[0][i], genre, songs[0][i], songs[1][i], artist))
 			elif ("Ogg" in format):
-				tmp = '%s oggenc -a "%s" -G "%s" -N "%s" -t "%s" -l "%s" -o "%s-%s.ogg" -' % (tmp, artist, genre, songs[0][i], songs[1][i], album, songs[1][i], artist)
+				tmp = '%s oggenc -a "%s" -G "%s" -N "%s" -t "%s" -l "%s" -o "%s-%s-%s.ogg" -' % (tmp, artist, genre, songs[0][i], songs[1][i], album, songs[0][i], songs[1][i], artist)
 		#	gui.rip_update(songs[1][i]) threads TODO
 			if self.debug: print tmp
 			os.system(tmp)
