@@ -4,7 +4,7 @@
 if __name__ == "__main__":
 	import sys, os, socket
 	import freedb, gui, cdrom
-	
+
 	
 	# Configuration
 	client		= "Kone"
@@ -16,7 +16,7 @@ if __name__ == "__main__":
 	hostname	= socket.gethostname()
 	
 	# Debug, print extra information
-	debug = 0
+	debug = 1
 
 	# Check line arguments 
 	if len(sys.argv)>1:
@@ -58,32 +58,8 @@ class Kone:
 
 
 	def rip(self, source_button, gui):
-		"""
-		This function gets calles when we press "Extract songs".
-		It will run cdparanoia and oggenc or lame to perform the
-		main function of the program, namely to rip music.
-		"""
-
-		format, artist, album, year, genre, songs = gui.get_cd_info()
-		#gui.rip_started(len(songs[1])) - Does not work, nothing happens before controll is returned to the gtk.main()
-		#					Need sepperate threads - TODO 
-		#					"Ill fix this on 17.11 and not use the whole day to talk about stargate" -jascorpe
-		#						:)
-
-		for i in range(len(songs[0])):
-			# filename without three letter extension
-			filename = ('%s-%s-%s' % (songs[0][i], songs[1][i], artist))
-			tmp = "cdparanoia -q %s - |" % songs[0][i]
-			if ("Mp3" in format):
-				tmp = ('%s lame -V 2 --quiet --tt "%s" --ta "%s" --tl "%s" --ty "%s" --tn "%s" --tg "%s" - "%s.mp3"' % (tmp, songs[1][i], artist, album, year, songs[0][i], genre, filename))
-			elif ("Ogg" in format):
-				tmp = '%s oggenc -a "%s" -G "%s" -N "%s" -t "%s" -l "%s" -o "%s.ogg" -' % (tmp, artist, genre, songs[0][i], songs[1][i], album, filename)
-		#	gui.rip_update(songs[1][i]) threads TODO
-			if self.debug: print tmp
-			os.system(tmp)
-
-		gui.popup("Ferdig :D", ["Jiipii"])
-
+		import rip
+		rip.Rip(gui, self.debug).start()
 
 	def read_cd(self, source_button, gui):
 		"""

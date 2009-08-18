@@ -280,6 +280,7 @@ class GUI:
 
 
 	def run(self):
+		gtk.gdk.threads_init()
 		if self.debug:
 			print "run"
 		self.window.show()
