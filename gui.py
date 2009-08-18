@@ -249,7 +249,7 @@ class GUI:
 		
 		text = "Starting extractig"	
 
-		box = gtk.VBox()
+		self.box_progress = gtk.VBox()
 
 		self.progressbar = gtk.ProgressBar();
 		self.progressbar.set_pulse_step(1.0/nr_of_tracks)
@@ -259,11 +259,11 @@ class GUI:
 		# A label above the bar
 		self.progressbar_label = gtk.Label(text)
 
-		box.pack_end(self.progressbar)
-		box.pack_start(self.progressbar_label)
-		self.box_main.pack_start(box)
+		self.box_progress.pack_end(self.progressbar)
+		self.box_progress.pack_start(self.progressbar_label)
+		self.box_main.pack_start(self.box_progress)
 
-		box.show_all()
+		self.box_progress.show_all()
 		self.box_main.show()
 
 	
@@ -277,6 +277,14 @@ class GUI:
 		self.progressbar_label.set_text(text)
 		self.progressbar.set_text(text)
 		self.progressbar.pulse()
+
+
+	def rip_finished(self):
+		"""
+	       Hides progressbar and shows main cdinfo
+		"""
+		self.box_progress.hide_all()
+		self.box_main.show_all()
 
 
 	def run(self):

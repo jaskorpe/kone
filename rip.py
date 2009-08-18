@@ -15,7 +15,7 @@ class Rip (threading.Thread):
         It will run cdparanoia and oggenc or lame to perform the
         main function of the program, namely to rip music.
         """
-        print "Blah!!!!"
+
         format, artist, album, year, genre, songs = self.gui.get_cd_info()
         self.gui.rip_started(len(songs[1]))
         # - Does not work, nothing happens before controll is returned to the gtk.main()
@@ -36,3 +36,4 @@ class Rip (threading.Thread):
             os.system(tmp)
 
         self.gui.popup("Ferdig :D", ["Jiipii"])
+        self.gui.rip_finished()
