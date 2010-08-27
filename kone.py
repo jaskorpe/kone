@@ -8,7 +8,7 @@ if __name__ == "__main__":
 	
 	# Configuration
 	client		= "Kone"
-	version		= "0.3"
+	version		= "0.4"
 	
 	# Get the hostname & username from the os,
 	# used in communication with the freedb server
