@@ -1,3 +1,5 @@
+# Copyright (c) 2006 Øyvind Skaar, Jon Anders Skorpen
+
 import threading
 import os
 

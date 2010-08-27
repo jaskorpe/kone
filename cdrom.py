@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Copyright (c) 2006 Øyvind Skaar, Jon Anders Skorpen
+
 import os, fcntl, struct, sys
 
 

@@ -1,4 +1,7 @@
 #!/usr/local/env python
+
+# Copyright (c) 2006 Øyvind Skaar, Jon Anders Skorpen
+
 import telnetlib
 import re
 

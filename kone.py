@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# Copyright (c) 2006 Øyvind Skaar, Jon Anders Skorpen
 
 if __name__ == "__main__":
 	import sys, os, socket

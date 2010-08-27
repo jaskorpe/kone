@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Copyright (c) 2006 Øyvind Skaar, Jon Anders Skorpen
+
 # GUI module, responsible for creating and updating the GUI and retrive info from it.
 
 import pygtk
@@ -129,6 +131,7 @@ class GUI:
 		cell_renderer2 = gtk.CellRendererText()		# Col. 2
 		cell_renderer2.set_property("editable", True)
 
+
 		# handle changed cells
 		def col0_changed(cell, path):
 			""" Column 0 changed, update store with new info """
@@ -148,7 +151,7 @@ class GUI:
 		column0 = gtk.TreeViewColumn("Extract", cell_renderer0)
 		column1 = gtk.TreeViewColumn("Track number", cell_renderer1)
 		column2 = gtk.TreeViewColumn("Song title", cell_renderer2)
-
+		
 		# insert the data from the store
 		column0.set_attributes(cell_renderer0, active=0) # what cell - column in store to read the info from
 		column1.set_attributes(cell_renderer1, text=1)
